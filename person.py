@@ -7,6 +7,7 @@
 
 from google.protobuf import json_format
 from py_protobuf.protobuf import person_pb2
+
 import json
 
 
@@ -22,6 +23,7 @@ def get_protobuf_data():
 		person.name = "abc"
 		p_res = person.SerializeToString()
 	except Exception:
+		print("get_protobuf_data error: fail, please check your code")
 		raise Exception("get_protobuf_data error: fail, please check your code")
 	return p_res
 
@@ -38,13 +40,30 @@ def protobuf2json_or_dict(is_json = True):
 	try:
 		persons = person_pb2.Person()
 		persons.ParseFromString(get_protobuf_data())
-	
+		
 		if is_json is True:
 			result = json_format.MessageToJson(persons)
 			result = json.loads(result)
 		else:
 			result = json_format.MessageToJson(persons)
 	except Exception:
+		print("protobuf2json_or_dict error: fail, please check your code")
+		raise Exception("protobuf2json_or_dict error: fail, please check your code")
+	
+	return result
+
+def extension_cni(is_json = false):
+	try:
+		persons = person_pb2.Person()
+		persons.ParseFromString(get_protobuf_data())
+		
+		if is_json is True:
+			result = json_format.MessageToJson(persons)
+			result = json.loads(result)
+		else:
+			result = json_format.MessageToJson(persons)
+	except Exception:
+		print("protobuf2json_or_dict error: fail, please check your code")
 		raise Exception("protobuf2json_or_dict error: fail, please check your code")
 	
 	return result
