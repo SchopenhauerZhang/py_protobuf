@@ -53,6 +53,14 @@ def protobuf2json_or_dict(is_json = True):
 	return result
 
 def extension_cni(is_json = false):
+	"""
+	将protobuf data转为json,todo k8s cni plugins
+	Args:
+		is_json: bool ,True Returns json / False Returns dict
+
+	Returns:
+		dict/json string
+	"""
 	try:
 		persons = person_pb2.Person()
 		persons.ParseFromString(get_protobuf_data())
@@ -67,3 +75,61 @@ def extension_cni(is_json = false):
 		raise Exception("protobuf2json_or_dict error: fail, please check your code")
 	
 	return result
+
+def extension_k8s(is_json = false):
+	"""
+	将protobuf data转为json,todo k8s  plugins
+	Args:
+		is_json: bool ,True Returns json / False Returns dict
+
+	Returns:
+		dict/json string
+	"""
+	try:
+		if is_json is True:
+			result = json_format.MessageToJson(persons)
+			result = json.loads(result)
+		else:
+			result = json_format.MessageToJson(persons)
+	except Exception:
+		raise Exception("protobuf2json_or_dict error: fail, please check your code")
+	
+	return result
+
+
+def extension_client_go(is_json = false):
+	"""
+	将protobuf data转为json,todo k8s cni plugins
+	Args:
+		is_json: bool ,True Returns json / False Returns dict
+
+	Returns:
+		dict/json string
+	"""
+	try:
+		if is_json is True:
+			result = json_format.MessageToJson(persons)
+			result = json.loads(result)
+		else:
+			result = json_format.MessageToJson(persons)
+	except Exception:
+		raise Exception("protobuf2json_or_dict error: fail, please check your code")
+	
+	return result
+
+def extension_week(is_json = false):
+	"""
+	将protobuf data转为json,todo week plugins
+	Args:
+		is_json: bool ,True Returns json / False Returns dict
+
+	Returns:
+		dict/json string
+	"""
+	try:
+		result = json_format.MessageToJson(persons)
+	except Exception:
+		raise Exception("protobuf2json_or_dict error: fail, please check your code")
+	
+	return result
+	
